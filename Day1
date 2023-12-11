@@ -27,7 +27,7 @@ calcul();
 let a = 1;
 
 function calcul() {
-  let b = 2 + a; // Utilisation d'une autre variable b au lieu de a
+  let b = 2 + a;
 
   console.log(b, "calcul");
 
@@ -45,7 +45,7 @@ calcul();
 
 ### 02 Exercice TDZ (temporal dead zone) (sans coder) <a class="anchor" id="section43"></a>
 
-Est ce que le code qui suit vous semble correcte ? Répondez sans exécuter le code.
+Est ce que le code qui suit vous semble correcte ? Répondez sans exécuter le code. NON
 
 ```js
 function tdz() {
@@ -106,6 +106,7 @@ for (const student of STUDENTS) {
   console.log(student);
 }
 ```
+
 #### 05 Exercice ttc <a class="anchor" id="section711"></a>
 
 1. Créez une fonction qui permet de calculer un prix TTC connaissant un prix HT. Donnez une valeur de 20% par défaut pour la TVA.
@@ -126,28 +127,22 @@ ttc("100", ".3"); // 130
 ```
 ```js
 function ttc(prixHT, tva = 0.2) {
-  // Vérification des types avec parseFloat
+
   prixHT = parseFloat(prixHT);
   tva = parseFloat(tva);
 
-  // Vérification si les types sont valides après parseFloat
   if (isNaN(prixHT) || isNaN(tva)) {
     return "Erreur de type";
   }
 
-  // Calcul du prix TTC
   const prixTTC = prixHT * (1 + tva);
 
-  // Affichage avec au plus 2 chiffres après la virgule
   return prixTTC.toFixed(2);
 }
 
-// Exemples d'utilisation
-console.log(ttc(100, 0.2)); // Affiche "120.00"
-console.log(ttc(100.50, 0.2)); // Affiche "120.60"
-console.log(ttc("hello", 0.2)); // Affiche "Erreur de type"
-console.log(ttc(100.50, "hello")); // Affiche "Erreur de type"
-console.log(ttc("100", ".3")); // Affiche "130.00"
+console.log(ttc(100, 0.2)); 
+console.log(ttc(100.50, 0.2));
+
 ```
 #### 06 Exercice fonction ttc spread operator <a class="anchor" id="section721"></a>
 
@@ -170,37 +165,28 @@ console.log(sumTTC(...badPriceHT, .3));
 function sumTTC(...prices) {
   let tva = 0.2; // TVA par défaut
 
-  // Vérification du type de la dernière valeur (qui peut être la TVA)
   const lastValue = prices[prices.length - 1];
   if (typeof lastValue === "number") {
     tva = parseFloat(lastValue);
     prices.pop(); // Supprimer la dernière valeur si c'est la TVA
   }
 
-  // Vérification des types avec parseFloat
   prices = prices.map((price) => parseFloat(price));
 
-  // Vérification si les types sont valides après parseFloat
   if (prices.some(isNaN) || isNaN(tva)) {
     return "Erreur de type";
   }
 
-  // Calcul de la somme TTC
   const sumTTC = prices.reduce((acc, priceHT) => acc + priceHT * (1 + tva), 0);
 
-  // Affichage avec au plus 2 chiffres après la virgule
   return sumTTC.toFixed(2);
 }
 
-// Exemples d'utilisation
 const priceHT = [100.50, 200.8, 55.7];
-console.log(sumTTC(...priceHT)); // Affiche la somme TTC
-console.log(sumTTC(...priceHT, 0.3)); // Affiche la somme TTC avec une TVA différente
-
-// Vérification du type des variables
-const badPriceHT = [100.50, "hello", 55.7];
-console.log(sumTTC(...badPriceHT, 0.3)); // Affiche "Erreur de type"
+console.log(sumTTC(...priceHT)); 
+console.log(sumTTC(...priceHT, 0.3)); 
 ```
+
 #### 07 Exercice function & expression <a class="anchor" id="section751"></a>
 
 *Sans exécuter le code.*
@@ -318,21 +304,17 @@ const Add = {
   },
 };
 
-// Exemples d'utilisation
 Add.a = 10;
 Add.b = 20;
-
-console.log(Add.sum()); // Affiche 30
+console.log(Add.sum()); 
 
 Add.numbers = [1, 2, 4];
-
-console.log(Add.sum()); // Affiche 37
+console.log(Add.sum()); 
 
 Add.reset();
 
 Add.numbers = [1, 2, 4];
-
-console.log(Add.sum()); // Affiche 7
+console.log(Add.sum()); 
 ```
 
 
@@ -350,9 +332,8 @@ const log = {
 }
 setTimeout(log.save, 500);
 ```
-Dans le code que vous avez fourni, le problème réside dans le fait que la méthode save est appelée à partir de setTimeout, ce qui modifie la valeur de this à l'intérieur de la méthode, et this devient undefined.
-
-Pour éviter cet effet de bord, vous pouvez utiliser une fonction fléchée (arrow function) pour définir la méthode save. Les fonctions fléchées conservent le contexte (this) du scope parent. Voici comment vous pouvez le faire :
+effet de bord, le probleme est la méthode "save" est appelée a partir de "setTimeout", ce qui modifie la valeur de "this" a l'intérieur de la méthode, et "this" devient "undefined".
+utiliser une arrow function pour définir la methode "save" cad conservent le contexte "this" du parent
 
 ```js
 
@@ -365,4 +346,3 @@ const log = {
 }
 setTimeout(log.save, 500);
 ```
-En utilisant une fonction fléchée pour définir save, vous assurez que this à l'intérieur de save fait référence à l'objet log, et vous évitez ainsi l'effet de bord qui se produit lorsque vous appelez log.save à partir de setTimeout.
