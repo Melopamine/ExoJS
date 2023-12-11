@@ -1,0 +1,90 @@
+### 01 Exercice scope calcul (sans coder)  <a class="anchor" id="section42"></a>
+
+Est ce que le code qui suit vous semble correcte ? Répondre sans exécuter le code. Si ce dernier n'est pas valide modifiez-le afin qu'il puisse s'exécuter correctement.
+
+```js
+
+let a = 1;
+
+function calcul() {
+  let a = 2 + a;
+
+  console.log(a, "calcul");
+
+  function sub_calcul() {
+    let b = a + 1;
+
+    console.log(b, "sub_calcul");
+  }
+
+  sub_calcul();
+}
+
+calcul();
+
+```
+```js
+let a = 1;
+
+function calcul() {
+  let b = 2 + a; // Utilisation d'une autre variable b au lieu de a
+
+  console.log(b, "calcul");
+
+  function sub_calcul() {
+    let c = b + 1;
+
+    console.log(c, "sub_calcul");
+  }
+
+  sub_calcul();
+}
+
+calcul();
+```
+
+### 02 Exercice TDZ (temporal dead zone) (sans coder) <a class="anchor" id="section43"></a>
+
+Est ce que le code qui suit vous semble correcte ? Répondez sans exécuter le code.
+
+```js
+function tdz() {
+  console.log(tdz_val);
+
+  let tdz_val = "Temporal Dead Zone";
+}
+
+tdz();
+
+```
+```js
+function tdz() {
+  let tdz_val = "Temporal Dead Zone"; 
+  console.log(tdz_val); 
+}
+
+tdz();
+```
+
+### 03 Exercice for let (sans coder) <a class="anchor" id="section44"></a>
+
+Est ce que le code qui suit vous semble correcte ? Répondez sans exécuter le code. # 0 1 2 3 4 5 6 7 8 9 100
+
+```js
+let i = 100;
+
+for (let i = 0; i < 10; i++) {
+  console.log(i);
+}
+
+console.log(i);
+```
+
+Est ce que le code qui suit vous semble correcte ? Répondez sans exécuter le code.
+
+Si ce code est valide qu'affichera-t-il ? #ReferenceError
+
+```js
+for (let j = 0; j < 10; j++) {}
+console.log(j);
+```
