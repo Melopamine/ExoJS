@@ -182,18 +182,16 @@ Soit le point A suivant, calculez la distance de ce point à l'ensemble de chaqu
 const A = [8.3, 7.5];
 const positions = [[1,1], [2, 2], [3, 4.5], [0, 9]];
 const distances = [];
-// Fonction pour calculer la distance entre deux points
+
 function calculateDistance(point1, point2) {
   return Math.floor(Math.sqrt((point1[0] - point2[0]) ** 2 + (point1[1] - point2[1]) ** 2) * 100) / 100;
 }
 
-// Calculer les distances et les stocker dans le tableau distances
 for (const position of positions) {
   const distance = calculateDistance(A, position);
   distances.push(distance);
 }
 
-// Trouver le point le plus éloigné
 const maxDistance = Math.max(...distances);
 const indexOfMaxDistance = distances.indexOf(maxDistance);
 const farthestPoint = positions[indexOfMaxDistance];
@@ -224,16 +222,12 @@ Indication : utilisez la méthode split pour transformer la chaîne de caractèr
 ```js
 const sentence = "Bonjour tout le monde, vous aimez JS ?";
 
-// Inversez la chaîne de caractères sentence ci-après.
 const reverseSentence = sentence.split('').reverse().join('');
 console.log(reverseSentence);
 
-// Comptez le nombre de caractères de chaque mot.
 const words = sentence.split(' ');
 const wordLengths = words.map(word => word.length);
 console.log(wordLengths);
-
-// script
 
 function countCharactersInWords(phrase) {
   const words = phrase.split(' ');
