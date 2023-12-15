@@ -96,7 +96,7 @@ fetch('https://jsonplaceholder.typicode.com/photos')
 
 2. Afficher id, title, les images miniatures avec document.write(images miniatures)
 ou dans un fichier index.html  => 2.5 POINTS
-
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -109,6 +109,7 @@ ou dans un fichier index.html  => 2.5 POINTS
   <script src="script.js"></script>
 </body>
 </html>
+```
 
 ```js
 document.addEventListener('DOMContentLoaded', function () {
